@@ -10,4 +10,5 @@ body {
   min-height: 100vh;
   margin: 0;
   font-family: 'overpass-mono', monospace;
+  background-color: #111A27;
 }
