@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'overpass-mono';
+  src: url(./fonts/OverpassMono-Regular.woff);
+  src: url(./fonts/OverpassMono-Regular.ttf) format("truetype");
+  src: url(./fonts/OverpassMono-Bold.woff);
+  src: url(./fonts/OverpassMono-Bold.ttf) format('truetype');
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'overpass-mono', monospace;
+}
