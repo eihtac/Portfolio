@@ -9,9 +9,9 @@
 
         <nav>
             <ul>
-                <li><router-link to="#">Qui suis-je ?</router-link></li>
-                <li><router-link to="#">Projets</router-link></li>
-                <li><router-link to="#">Contact</router-link></li>
+                <li><router-link :to="{ path: '/', hash: '#presentation' }">Qui suis-je ?</router-link></li>
+                <li><router-link :to="{ path: '/', hash: '#projects' }">Projets</router-link></li>
+                <li><router-link :to="{ path: '/', hash: '#contact' }">Contact</router-link></li>
             </ul>
         </nav>
     </div>
