@@ -24,6 +24,40 @@
         </section>
       </div>
     </section> 
+    <section id="projects">
+      <h2>Projets</h2>
+      <div class="desktop-view">
+        <ul>
+          <li @mouseover="changeImage('cv')" @mouseout="resetImage">CV</li>
+          <li @mouseover="changeImage('myHomeSpace')" @mouseout="resetImage">My home Space</li>
+          <li @mouseover="changeImage('cahierDesCharges')" @mouseout="resetImage">Cahier des charges</li>
+          <li @mouseover="changeImage('espaceCommentaire')" @mouseout="resetImage">Espace commentaire</li>
+        </ul>
+        <div class="project-image">
+          <img :src="currentImage" alt="Photo du projet">
+        </div>
+      </div>
+      <div class="mobile-view">
+        <ul>
+          <li>
+            <div class="project-title">CV</div>
+            <img src="../assets/img/cv.png" alt="CV">
+          </li>
+          <li>
+            <div class="project-title">My home Space</div>
+            <img src="../assets/img/MyHomeSpace.png" alt="My Home Space">
+          </li>
+          <li>
+            <div class="project-title">Cahier des charges</div>
+            <img src="../assets/img/cahier-des-charges.png" alt="Cahier des charges">
+          </li>
+          <li>
+            <div class="project-title">Espace commentaire</div>
+            <img src="../assets/img/espace-commentaire.png" alt="Espace commentaire">
+          </li>
+        </ul>
+      </div>
+    </section>
   </main>
   <BaseFooter/>
 </template>
@@ -43,6 +77,32 @@
     .typeString('Hello, World!')
     .start();
   });
+
+  const defaultImage = new URL('../assets/img/default.png', import.meta.url).href;
+  const currentImage = ref(defaultImage);
+  
+  const changeImage = (projectName) => {
+    switch (projectName) {
+      case 'cv':
+        currentImage.value = new URL('../assets/img/cv.png', import.meta.url).href;
+        break;
+      case 'myHomeSpace':
+        currentImage.value = new URL('../assets/img/MyHomeSpace.png', import.meta.url).href;
+        break;
+      case 'cahierDesCharges':
+        currentImage.value = new URL('../assets/img/cahier-des-charges.png', import.meta.url).href;
+        break;
+      case 'espaceCommentaire':
+        currentImage.value = new URL('../assets/img/espace-commentaire.png', import.meta.url).href;
+        break;
+      default:
+        currentImage.value = defaultImage;
+    }
+  };
+
+  const resetImage = () => {
+    currentImage.value = defaultImage;
+  };
 </script>
 
 <style scoped>
@@ -98,5 +158,69 @@
   li img {
     width: 70px;
     margin: 5px;
+  }
+
+  #projects {
+    margin-bottom: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #projects ul {
+    list-style-type: none;
+  }
+
+  #projects li {
+    font-size: 150%;
+    cursor: pointer;
+  }
+
+  #projects li:hover {
+    color: #FFD60A; 
+  }
+
+  .project-image {
+    width: 100%;
+    max-width: 800px;
+    height: 700px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+    background-color: #0D141F; 
+    margin-top: 20px;
+  }
+
+  .project-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; 
+    transition: opacity 0.3s; 
+  }
+
+  .desktop-view {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .mobile-view {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .desktop-view {
+      display: none;
+    }
+
+    .mobile-view {
+      display: block;
+    }
+
+    .mobile-view ul {
+      list-style-type: none;
+      padding: 0;
+    }
   }
 </style>
