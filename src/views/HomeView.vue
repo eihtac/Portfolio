@@ -28,10 +28,10 @@
       <h2>Projets</h2>
       <div class="desktop-view">
         <ul>
-          <li @mouseover="changeImage('cv')" @mouseout="resetImage">CV</li>
-          <li @mouseover="changeImage('myHomeSpace')" @mouseout="resetImage">My home Space</li>
-          <li @mouseover="changeImage('cahierDesCharges')" @mouseout="resetImage">Cahier des charges</li>
-          <li @mouseover="changeImage('espaceCommentaire')" @mouseout="resetImage">Espace commentaire</li>
+          <li @click="openModal('cv')" @mouseover="changeImage('cv')" @mouseout="resetImage">CV</li>
+          <li @click="openModal('myHomeSpace')" @mouseover="changeImage('myHomeSpace')" @mouseout="resetImage">My home Space</li>
+          <li @click="openModal('cahierDesCharges')" @mouseover="changeImage('cahierDesCharges')" @mouseout="resetImage">Cahier des charges</li>
+          <li @click="openModal('espaceCommentaire')" @mouseover="changeImage('espaceCommentaire')" @mouseout="resetImage">Espace commentaire</li>
         </ul>
         <div class="project-image">
           <img :src="currentImage" alt="Photo du projet">
@@ -59,7 +59,8 @@
       </div>
     </section>
   </main>
-  <BaseFooter/>
+  <BaseFooter :isHidden="isFooterHidden"/>
+  <ModalWindow :isVisible="showModal" :projectName="selectedProjectName" @close="closeModal"/>
 </template>
 
 <script setup>
@@ -67,8 +68,14 @@
   import BaseHeader from "../components/BaseHeader.vue";
   import BaseFooter from "../components/BaseFooter.vue";
   import Typewriter from 'typewriter-effect/dist/core'; 
+  import ModalWindow from "../components/ModalWindow.vue";
 
   const txtAnim = ref(null);
+  const defaultImage = new URL('../assets/img/default.png', import.meta.url).href;
+  const currentImage = ref(defaultImage);
+  const showModal = ref(false);
+  const selectedProjectName = ref('');
+  const isFooterHidden = ref(false);
 
   onMounted(() => {
     new Typewriter(txtAnim.value, {
@@ -77,9 +84,6 @@
     .typeString('Hello, World!')
     .start();
   });
-
-  const defaultImage = new URL('../assets/img/default.png', import.meta.url).href;
-  const currentImage = ref(defaultImage);
   
   const changeImage = (projectName) => {
     switch (projectName) {
@@ -102,6 +106,17 @@
 
   const resetImage = () => {
     currentImage.value = defaultImage;
+  };
+
+  const openModal = (projectName) => {
+    selectedProjectName.value = projectName;
+    showModal.value = true;
+    isFooterHidden.value = true; 
+  };
+
+  const closeModal = () => {
+    showModal.value = false;
+    isFooterHidden.value = false;
   };
 </script>
 
