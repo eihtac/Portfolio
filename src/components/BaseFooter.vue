@@ -4,7 +4,7 @@
             <a target="_blank" href="https://github.com/eihtac"><img src="../assets/img/github-icon.png" alt="icône github"></a>
             <a target="_blank" href="https://fr.linkedin.com/"><img src="../assets/img/linkedin-icon.png" alt="icône linkedin"></a>
         </div>
-        <small>Mis à jour le <time datetime="2024-06-05">05.06.2024</time></small>
+        <small>Mis à jour le <time datetime="2024-06-11">11.06.2024</time></small>
     </div>
 </template>
 

@@ -39,24 +39,28 @@
       </div>
       <div class="mobile-view">
         <ul>
-          <li>
+          <li @click="openModal('cv')">
             <div class="project-title">CV</div>
             <img src="../assets/img/cv.png" alt="CV">
           </li>
-          <li>
+          <li @click="openModal('myHomeSpace')">
             <div class="project-title">My home Space</div>
             <img src="../assets/img/MyHomeSpace.png" alt="My Home Space">
           </li>
-          <li>
+          <li @click="openModal('cahierDesCharges')">
             <div class="project-title">Cahier des charges</div>
             <img src="../assets/img/cahier-des-charges.png" alt="Cahier des charges">
           </li>
-          <li>
+          <li @click="openModal('espaceCommentaire')">
             <div class="project-title">Espace commentaire</div>
             <img src="../assets/img/espace-commentaire.png" alt="Espace commentaire">
           </li>
         </ul>
       </div>
+    </section>
+    <section id="contact">
+      <h2>Me contacter</h2>
+      <ContactForm/>
     </section>
   </main>
   <BaseFooter :isHidden="isFooterHidden"/>
@@ -69,6 +73,7 @@
   import BaseFooter from "../components/BaseFooter.vue";
   import Typewriter from 'typewriter-effect/dist/core'; 
   import ModalWindow from "../components/ModalWindow.vue";
+  import ContactForm from "../components/ContactForm.vue";
 
   const txtAnim = ref(null);
   const defaultImage = new URL('../assets/img/default.png', import.meta.url).href;
@@ -127,7 +132,7 @@
     src: url(../assets/fonts/ShareTechMono-Regular.ttf) format('truetype');
   }
 
-  #presentation {
+  #presentation, #contact{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -136,7 +141,7 @@
   h2 {
     color: #FFD60A;
     font-size: 350%;
-    margin-top: 130px;
+    margin-top: 100px;
     margin-bottom: 100px;
     font-family: 'share-tech-mono';
   }
@@ -176,7 +181,6 @@
   }
 
   #projects {
-    margin-bottom: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
