@@ -2,7 +2,7 @@
     <div class="modal" v-if="isVisible" @click.self="close">
         <div class="modal-content">
             <span class="close" @click="close">&times;</span>
-            <h2>Zoom sur le projet {{ modalTitle }} :</h2>
+            <h2>Détails sur le projet {{ modalTitle }} :</h2>
             <div class="modal-body">
                 <div v-if="projectName === 'cv'">
                     <article>Créé le <time datetime="2024-03-04">04.03.2024</time> avec <img src="../assets/img/html.png" alt="html"> et <img src="../assets/img/css.png" alt="css">. <br>
@@ -129,5 +129,29 @@
     a {
         text-decoration: none;
         color: #FFCA16;
+    }
+
+    @media (max-width: 768px) {
+        .modal-content {
+            width: 100%; 
+            padding: 10px;
+        }
+
+        span {
+            font-size: 24px; 
+        }
+
+        h2 {
+            font-size: 1.5em; 
+        }
+
+        article {
+            font-size: 1em; 
+        }
+
+        img {
+            max-width: 100%; 
+            height: auto; 
+        }
     }
 </style>

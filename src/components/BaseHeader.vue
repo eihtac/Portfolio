@@ -9,18 +9,26 @@
 
         <nav>
             <ul>
-                <li><router-link :to="{ path: '/', hash: '#presentation' }">Qui suis-je ?</router-link></li>
-                <li><router-link :to="{ path: '/', hash: '#projects' }">Projets</router-link></li>
-                <li><router-link :to="{ path: '/', hash: '#contact' }">Contact</router-link></li>
+                <li><router-link :to="{ path: '/', hash: '#presentation' }" :class="{ active: isActive('#presentation') }">Qui suis-je ?</router-link></li>
+                <li><router-link :to="{ path: '/', hash: '#projects' }" :class="{ active: isActive('#projects') }">Projets</router-link></li>
+                <li><router-link :to="{ path: '/', hash: '#contact' }" :class="{ active: isActive('#contact') }">Contact</router-link></li>
             </ul>
         </nav>
     </div>
 </template>
 
 <script setup>
+    import { useRoute } from 'vue-router';
+
+    const route = useRoute();
+
+    const isActive = (hash) => {
+        return route.hash === hash;
+    };
+
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    };
 </script>
 
 <style scoped>
@@ -33,6 +41,8 @@
         position: fixed;
         top: 0;
         width: 100%;
+        padding: 0;
+        margin: 0;
     }
 
     h1{
@@ -64,6 +74,11 @@
     }
 
     li a:hover{
+        text-decoration: underline;
+        color: #FFE7B3;
+    }
+
+    .active {
         text-decoration: underline;
         color: #FFE7B3;
     }
